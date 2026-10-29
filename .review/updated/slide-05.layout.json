@@ -1,0 +1,1348 @@
+{
+  "schema": "openai.presentation.layout/v5",
+  "unit": "px",
+  "slide": {
+    "id": "sl/i107q5of",
+    "index": 4,
+    "layout": {
+      "id": "ly/07y1cjyt",
+      "name": "Blank"
+    },
+    "masterLayoutId": "ly/atofqts7",
+    "backgroundColor": "rgba(255,255,255,1)",
+    "position": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "ly/07y1cjyt",
+      "name": "Blank",
+      "type": "blank",
+      "parentLayoutId": "ly/atofqts7",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "textbox",
+          "scope": "layout",
+          "id": "sh/ylsfqp87",
+          "editable": false,
+          "name": "Date Placeholder 1",
+          "position": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "text": "1/27/13",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "1/27/13",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "1/27/13"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "id": "sh/j61gjups",
+          "editable": false,
+          "name": "Footer Placeholder 2",
+          "position": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "order": 3,
+          "kind": "textbox",
+          "scope": "layout",
+          "id": "sh/wjaxozqh",
+          "editable": false,
+          "name": "Slide Number Placeholder 3",
+          "position": {
+            "left": 0,
+            "top": 0,
+            "width": 0,
+            "height": 0
+          },
+          "text": "5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "5",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "ly/atofqts7",
+      "type": "master",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "textbox",
+          "scope": "master",
+          "id": "sh/4va94z21",
+          "editable": false,
+          "name": "Title Placeholder 1",
+          "position": {
+            "left": 48,
+            "top": 28.83,
+            "width": 864,
+            "height": 120
+          },
+          "geometry": "rect",
+          "text": "Click to edit Master title style",
+          "style": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master title style",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master title style",
+                  "anchor": 2,
+                  "vertical": 1,
+                  "verticalAlignment": "middle",
+                  "autoFit": "shrinkText",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "kind": "textbox",
+          "scope": "master",
+          "id": "sh/pwjax436",
+          "editable": false,
+          "name": "Text Placeholder 2",
+          "position": {
+            "left": 48,
+            "top": 168,
+            "width": 864,
+            "height": 475.17
+          },
+          "geometry": "rect",
+          "text": "Click to edit Master text styles\nSecond level\nThird level\nFourth level\nFifth level",
+          "style": {
+            "vertical": 1,
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Click to edit Master text styles",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Click to edit Master text styles",
+                  "vertical": 1,
+                  "autoFit": "shrinkText",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "Second level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Second level",
+                  "vertical": 1,
+                  "autoFit": "shrinkText",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            },
+            {
+              "index": 3,
+              "text": "Third level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Third level",
+                  "vertical": 1,
+                  "autoFit": "shrinkText",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            },
+            {
+              "index": 4,
+              "text": "Fourth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fourth level",
+                  "vertical": 1,
+                  "autoFit": "shrinkText",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            },
+            {
+              "index": 5,
+              "text": "Fifth level",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Fifth level",
+                  "vertical": 1,
+                  "autoFit": "shrinkText",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "kind": "textbox",
+          "scope": "master",
+          "id": "sh/qxsr69kr",
+          "editable": false,
+          "name": "Date Placeholder 3",
+          "position": {
+            "left": 48,
+            "top": 667.33,
+            "width": 224,
+            "height": 38.33
+          },
+          "geometry": "rect",
+          "text": "1/27/13",
+          "style": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "1/27/13",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "1/27/13",
+                  "anchor": 2,
+                  "vertical": 1,
+                  "verticalAlignment": "middle",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "master",
+          "id": "sh/ry1szulc",
+          "editable": false,
+          "name": "Footer Placeholder 4",
+          "position": {
+            "left": 328,
+            "top": 667.33,
+            "width": 304,
+            "height": 38.33
+          },
+          "geometry": "rect",
+          "style": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          }
+        },
+        {
+          "order": 5,
+          "kind": "textbox",
+          "scope": "master",
+          "id": "sh/czu98z2x",
+          "editable": false,
+          "name": "Slide Number Placeholder 5",
+          "position": {
+            "left": 688,
+            "top": 667.33,
+            "width": 224,
+            "height": 38.33
+          },
+          "geometry": "rect",
+          "text": "5",
+          "style": {
+            "anchor": 2,
+            "vertical": 1,
+            "verticalAlignment": "middle",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "5",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "5",
+                  "anchor": 2,
+                  "vertical": 1,
+                  "verticalAlignment": "middle",
+                  "insets": {
+                    "top": 4.8,
+                    "right": 9.6,
+                    "bottom": 4.8,
+                    "left": 9.6
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/dgbulwnm",
+      "editable": true,
+      "name": "Rectangle 1",
+      "position": {
+        "left": 72,
+        "top": 42,
+        "width": 1136,
+        "height": 92
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "3. Existing System — Background",
+      "style": {
+        "anchor": 2,
+        "fontSize": 40,
+        "typeface": "Arial",
+        "color": "#12304A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 0,
+          "bottom": 4.8,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "3. Existing System — Background",
+          "style": {
+            "fontSize": 40,
+            "typeface": "Arial",
+            "color": "#12304A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "3. Existing System — Background",
+              "anchor": 2,
+              "fontSize": 40,
+              "typeface": "Arial",
+              "color": "#12304A",
+              "bold": true,
+              "alignment": "left",
+              "verticalAlignment": "middle",
+              "wrap": "square",
+              "insets": {
+                "right": 0,
+                "left": 0
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/cf2tcr61",
+      "editable": true,
+      "name": "Rectangle 2",
+      "position": {
+        "left": 1152,
+        "top": 673,
+        "width": 56,
+        "height": 25
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "05",
+      "style": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "Arial",
+        "color": "#66727E",
+        "bold": false,
+        "italic": false,
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "05",
+          "style": {
+            "fontSize": 16,
+            "typeface": "Arial",
+            "color": "#66727E",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "05",
+              "anchor": 2,
+              "fontSize": 16,
+              "typeface": "Arial",
+              "color": "#66727E",
+              "alignment": "right",
+              "verticalAlignment": "middle"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/z2tcnm5s",
+      "editable": true,
+      "name": "Rectangle 3",
+      "position": {
+        "left": 72,
+        "top": 165,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "XV6 manages free physical memory as a linked list (kmem.freelist).",
+      "style": {
+        "anchor": 2,
+        "fontSize": 29.33,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 12
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "XV6 manages free physical memory as a linked list (kmem.freelist).",
+          "style": {
+            "fontSize": 29.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "XV6 manages free physical memory as a linked list (kmem.freelist).",
+              "anchor": 2,
+              "fontSize": 29.33,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "alignment": "left",
+              "verticalAlignment": "middle",
+              "wrap": "square",
+              "insets": {
+                "left": 12
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/yhkbe1o7",
+      "editable": true,
+      "name": "Rectangle 4",
+      "position": {
+        "left": 72,
+        "top": 251.97,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "kalloc() pops the head page; kfree() pushes a freed page back.",
+      "style": {
+        "anchor": 2,
+        "fontSize": 29.33,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 12
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "kalloc() pops the head page; kfree() pushes a freed page back.",
+          "style": {
+            "fontSize": 29.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "kalloc() pops the head page; kfree() pushes a freed page back.",
+              "anchor": 2,
+              "fontSize": 29.33,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "alignment": "left",
+              "verticalAlignment": "middle",
+              "wrap": "square",
+              "insets": {
+                "left": 12
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/l4bupwny",
+      "editable": true,
+      "name": "Rectangle 5",
+      "position": {
+        "left": 72,
+        "top": 338.94,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "A spinlock (kmem.lock) protects all accesses to the free list.",
+      "style": {
+        "anchor": 2,
+        "fontSize": 29.33,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 12
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A spinlock (kmem.lock) protects all accesses to the free list.",
+          "style": {
+            "fontSize": 29.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A spinlock (kmem.lock) protects all accesses to the free list.",
+              "anchor": 2,
+              "fontSize": 29.33,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "alignment": "left",
+              "verticalAlignment": "middle",
+              "wrap": "square",
+              "insets": {
+                "left": 12
+              }
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/032tgr6d",
+      "editable": true,
+      "name": "TextBox 6",
+      "position": {
+        "left": 72,
+        "top": 440.94,
+        "width": 1136,
+        "height": 31.5
+      },
+      "geometry": "rect",
+      "text": "Table 1. Shared kernel structures and their locks",
+      "style": {
+        "fontSize": 22.67,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Table 1. Shared kernel structures and their locks",
+          "style": {
+            "fontSize": 22.67,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Table 1. Shared kernel structures and their locks",
+              "fontSize": 22.67,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": true,
+              "alignment": "left",
+              "wrap": "square"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "table",
+      "scope": "slide",
+      "id": "tb/adonexsj",
+      "editable": true,
+      "name": "Table 7",
+      "position": {
+        "left": 72,
+        "top": 477.69,
+        "width": 1136,
+        "height": 146.99
+      },
+      "text": "Structure | Lock | Purpose\nkmem.freelist | kmem.lock | Physical page free list\nptable.proc[] | ptable.lock | Process table\nbcache | bcache.lock | Buffer cache for disk blocks",
+      "rows": 4,
+      "cols": 3,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 477.69,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "Structure",
+          "fillColor": "#12304A",
+          "style": {
+            "fontSize": 18.67,
+            "typeface": "Arial",
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Structure",
+              "style": {
+                "fontSize": 18.67,
+                "typeface": "Arial",
+                "color": "#FFFFFF",
+                "bold": true,
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Structure",
+                  "fontSize": 18.67,
+                  "typeface": "Arial",
+                  "color": "#FFFFFF",
+                  "bold": true,
+                  "alignment": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "position": {
+            "left": 450.67,
+            "top": 477.69,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "Lock",
+          "fillColor": "#12304A",
+          "style": {
+            "fontSize": 18.67,
+            "typeface": "Arial",
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Lock",
+              "style": {
+                "fontSize": 18.67,
+                "typeface": "Arial",
+                "color": "#FFFFFF",
+                "bold": true,
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Lock",
+                  "fontSize": 18.67,
+                  "typeface": "Arial",
+                  "color": "#FFFFFF",
+                  "bold": true,
+                  "alignment": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "position": {
+            "left": 829.33,
+            "top": 477.69,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "Purpose",
+          "fillColor": "#12304A",
+          "style": {
+            "fontSize": 18.67,
+            "typeface": "Arial",
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Purpose",
+              "style": {
+                "fontSize": 18.67,
+                "typeface": "Arial",
+                "color": "#FFFFFF",
+                "bold": true,
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Purpose",
+                  "fontSize": 18.67,
+                  "typeface": "Arial",
+                  "color": "#FFFFFF",
+                  "bold": true,
+                  "alignment": "center"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 2,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 514.44,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "kmem.freelist",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "kmem.freelist",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "kmem.freelist",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 2,
+          "column": 2,
+          "position": {
+            "left": 450.67,
+            "top": 514.44,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "kmem.lock",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "kmem.lock",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "kmem.lock",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 2,
+          "column": 3,
+          "position": {
+            "left": 829.33,
+            "top": 514.44,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "Physical page free list",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Physical page free list",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Physical page free list",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 3,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 551.18,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "ptable.proc[]",
+          "fillColor": "#F0F4F8",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "ptable.proc[]",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "ptable.proc[]",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 3,
+          "column": 2,
+          "position": {
+            "left": 450.67,
+            "top": 551.18,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "ptable.lock",
+          "fillColor": "#F0F4F8",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "ptable.lock",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "ptable.lock",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "row": 3,
+          "column": 3,
+          "position": {
+            "left": 829.33,
+            "top": 551.18,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "Process table",
+          "fillColor": "#F0F4F8",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Process table",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Process table",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "row": 4,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 587.93,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "bcache",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "bcache",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "bcache",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "row": 4,
+          "column": 2,
+          "position": {
+            "left": 450.67,
+            "top": 587.93,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "bcache.lock",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "bcache.lock",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "bcache.lock",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "row": 4,
+          "column": 3,
+          "position": {
+            "left": 829.33,
+            "top": 587.93,
+            "width": 378.67,
+            "height": 36.75
+          },
+          "text": "Buffer cache for disk blocks",
+          "style": {
+            "fontSize": 17.33,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "alignment": "left"
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Buffer cache for disk blocks",
+              "style": {
+                "fontSize": 17.33,
+                "typeface": "Arial",
+                "color": "#17202A",
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Buffer cache for disk blocks",
+                  "fontSize": 17.33,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "alignment": "left"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/m5kbi1oj",
+      "editable": true,
+      "name": "Rectangle 8",
+      "position": {
+        "left": 72,
+        "top": 634,
+        "width": 1020,
+        "height": 55
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Source: MIT xv6 RISC-V kernel source code.",
+      "style": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#53616E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Source: MIT xv6 RISC-V kernel source code.",
+          "style": {
+            "fontSize": 18.67,
+            "typeface": "Arial",
+            "color": "#53616E",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Source: MIT xv6 RISC-V kernel source code.",
+              "anchor": 2,
+              "fontSize": 18.67,
+              "typeface": "Arial",
+              "color": "#53616E",
+              "alignment": "left",
+              "verticalAlignment": "middle",
+              "wrap": "square"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    }
+  ]
+}

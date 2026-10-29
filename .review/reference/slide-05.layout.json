@@ -1,0 +1,894 @@
+{
+  "schema": "openai.presentation.layout/v5",
+  "unit": "px",
+  "slide": {
+    "id": "sl/i107q5of",
+    "index": 4,
+    "layout": {
+      "id": "ly/14ra9krq",
+      "name": "Blank"
+    },
+    "masterLayoutId": "ly/atofqts7",
+    "masterLayoutName": "Master",
+    "backgroundColor": "rgba(255,255,255,1)",
+    "position": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "ly/14ra9krq",
+      "name": "Blank",
+      "type": "blank",
+      "parentLayoutId": "ly/atofqts7",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "ly/atofqts7",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/dgbulwnm",
+      "editable": true,
+      "name": "Rectangle 1",
+      "position": {
+        "left": 72,
+        "top": 42,
+        "width": 1136,
+        "height": 92
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Existing System: xv6 protects a global free list",
+      "style": {
+        "anchor": 1,
+        "fontSize": 42,
+        "typeface": "Arial",
+        "color": "#12304A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Existing System: xv6 protects a global free list",
+          "style": {
+            "fontSize": 42,
+            "typeface": "Arial",
+            "color": "#12304A",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Existing System: xv6 protects a global free list",
+              "anchor": 1,
+              "fontSize": 42,
+              "typeface": "Arial",
+              "color": "#12304A",
+              "bold": true,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/cf2tcr61",
+      "editable": true,
+      "name": "Rectangle 2",
+      "position": {
+        "left": 1152,
+        "top": 673,
+        "width": 56,
+        "height": 25
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "05",
+      "style": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#66727E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "05",
+          "style": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#66727E",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "05",
+              "anchor": 1,
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#66727E",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/z2tcnm5s",
+      "editable": true,
+      "name": "Rectangle 3",
+      "position": {
+        "left": 72,
+        "top": 137,
+        "width": 1136,
+        "height": 31
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Table 2. Shared kernel structures and their locks",
+      "style": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Table 2. Shared kernel structures and their locks",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Table 2. Shared kernel structures and their locks",
+              "anchor": 1,
+              "fontSize": 24,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": true,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "table",
+      "scope": "slide",
+      "id": "tb/nad4jits",
+      "editable": true,
+      "name": "Table 4",
+      "position": {
+        "left": 72,
+        "top": 181,
+        "width": 1136,
+        "height": 336
+      },
+      "text": "Shared structure | Lock and purpose\nPhysical-page free list | kmem.lock — serializes kalloc() and kfree()\nProcess table | p->lock — protects per-process state\nPID allocator | pid_lock — coordinates PID assignment\nParent/child state | wait_lock — coordinates wait transitions\nBuffer cache | bcache.lock — protects shared metadata\nTimer ticks | tickslock — protects the shared tick count",
+      "rows": 7,
+      "cols": 2,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 181,
+            "width": 355,
+            "height": 48
+          },
+          "text": "Shared structure",
+          "fillColor": "#EDF1F5",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Shared structure",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Shared structure",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "position": {
+            "left": 427,
+            "top": 181,
+            "width": 781,
+            "height": 48
+          },
+          "text": "Lock and purpose",
+          "fillColor": "#EDF1F5",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Lock and purpose",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Lock and purpose",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 2,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 229,
+            "width": 355,
+            "height": 48
+          },
+          "text": "Physical-page free list",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Physical-page free list",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Physical-page free list",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 2,
+          "column": 2,
+          "position": {
+            "left": 427,
+            "top": 229,
+            "width": 781,
+            "height": 48
+          },
+          "text": "kmem.lock — serializes kalloc() and kfree()",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "kmem.lock — serializes kalloc() and kfree()",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "kmem.lock — serializes kalloc() and kfree()",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 3,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 277,
+            "width": 355,
+            "height": 48
+          },
+          "text": "Process table",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Process table",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Process table",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 3,
+          "column": 2,
+          "position": {
+            "left": 427,
+            "top": 277,
+            "width": 781,
+            "height": 48
+          },
+          "text": "p->lock — protects per-process state",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "p->lock — protects per-process state",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "p->lock — protects per-process state",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 4,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 325,
+            "width": 355,
+            "height": 48
+          },
+          "text": "PID allocator",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "PID allocator",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "PID allocator",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 4,
+          "column": 2,
+          "position": {
+            "left": 427,
+            "top": 325,
+            "width": 781,
+            "height": 48
+          },
+          "text": "pid_lock — coordinates PID assignment",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "pid_lock — coordinates PID assignment",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "pid_lock — coordinates PID assignment",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "row": 5,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 373,
+            "width": 355,
+            "height": 48
+          },
+          "text": "Parent/child state",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Parent/child state",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Parent/child state",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "row": 5,
+          "column": 2,
+          "position": {
+            "left": 427,
+            "top": 373,
+            "width": 781,
+            "height": 48
+          },
+          "text": "wait_lock — coordinates wait transitions",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "wait_lock — coordinates wait transitions",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "wait_lock — coordinates wait transitions",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "row": 6,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 421,
+            "width": 355,
+            "height": 48
+          },
+          "text": "Buffer cache",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Buffer cache",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Buffer cache",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "row": 6,
+          "column": 2,
+          "position": {
+            "left": 427,
+            "top": 421,
+            "width": 781,
+            "height": 48
+          },
+          "text": "bcache.lock — protects shared metadata",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "bcache.lock — protects shared metadata",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "bcache.lock — protects shared metadata",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "row": 7,
+          "column": 1,
+          "position": {
+            "left": 72,
+            "top": 469,
+            "width": 355,
+            "height": 48
+          },
+          "text": "Timer ticks",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Timer ticks",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Timer ticks",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "row": 7,
+          "column": 2,
+          "position": {
+            "left": 427,
+            "top": 469,
+            "width": 781,
+            "height": 48
+          },
+          "text": "tickslock — protects the shared tick count",
+          "fillColor": "#FFFFFF",
+          "style": {
+            "fontSize": 24,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "tickslock — protects the shared tick count",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "tickslock — protects the shared tick count",
+                  "fontSize": 24,
+                  "typeface": "Arial",
+                  "color": "#17202A",
+                  "bold": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/l4bupwny",
+      "editable": true,
+      "name": "Rectangle 5",
+      "position": {
+        "left": 72,
+        "top": 634,
+        "width": 1020,
+        "height": 55
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Source: MIT xv6 locking chapter. Per-CPU lists need refill/steal; CAS needs ABA-safe reclamation; neither was tested.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#53616E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Source: MIT xv6 locking chapter. Per-CPU lists need refill/steal; CAS needs ABA-safe reclamation; neither was tested.",
+          "style": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#53616E",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Source: MIT xv6 locking chapter. Per-CPU lists need refill/steal; CAS needs ABA-safe reclamation; neither was tested.",
+              "anchor": 1,
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#53616E",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/032tgr6d",
+      "editable": true,
+      "name": "Rectangle 5",
+      "position": {
+        "left": 72,
+        "top": 547.2,
+        "width": 1135.68,
+        "height": 48
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Drawbacks: one global lock makes CPUs spin under contention.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Drawbacks: one global lock makes CPUs spin under contention.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Drawbacks: one global lock makes CPUs spin under contention.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,523 @@
+{
+  "schema": "openai.presentation.layout/v5",
+  "unit": "px",
+  "slide": {
+    "id": "sl/x8f69ofe",
+    "index": 5,
+    "layout": {
+      "id": "ly/14ra9krq",
+      "name": "Blank"
+    },
+    "masterLayoutId": "ly/atofqts7",
+    "masterLayoutName": "Master",
+    "backgroundColor": "rgba(255,255,255,1)",
+    "position": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "ly/14ra9krq",
+      "name": "Blank",
+      "type": "blank",
+      "parentLayoutId": "ly/atofqts7",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "ly/atofqts7",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/yhg7epsj",
+      "editable": true,
+      "name": "Rectangle 1",
+      "position": {
+        "left": 72,
+        "top": 42,
+        "width": 1136,
+        "height": 92
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "3. Proposed Solution: hold kmem.lock for the full update",
+      "style": {
+        "anchor": 1,
+        "fontSize": 42,
+        "typeface": "Arial",
+        "color": "#12304A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "3. Proposed Solution: hold kmem.lock for the full update",
+          "style": {
+            "fontSize": 42,
+            "typeface": "Arial",
+            "color": "#12304A",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "3. Proposed Solution: hold kmem.lock for the full update",
+              "anchor": 1,
+              "fontSize": 42,
+              "typeface": "Arial",
+              "color": "#12304A",
+              "bold": true,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/zi98nu94",
+      "editable": true,
+      "name": "Rectangle 2",
+      "position": {
+        "left": 1152,
+        "top": 673,
+        "width": 56,
+        "height": 25
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "06",
+      "style": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#66727E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "06",
+          "style": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#66727E",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "06",
+              "anchor": 1,
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#66727E",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/87ipkzal",
+      "editable": true,
+      "name": "Rectangle 3",
+      "position": {
+        "left": 72,
+        "top": 165,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Keep kmem.lock around each free-list update.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Keep kmem.lock around each free-list update.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Keep kmem.lock around each free-list update.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/98rqt4r6",
+      "editable": true,
+      "name": "Rectangle 4",
+      "position": {
+        "left": 72,
+        "top": 268,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Protect the complete read-and-update sequence.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Protect the complete read-and-update sequence.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Protect the complete read-and-update sequence.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/ml07i9sv",
+      "editable": true,
+      "name": "Rectangle 5",
+      "position": {
+        "left": 72,
+        "top": 371,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Use atomic ownership with acquire/release ordering.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Use atomic ownership with acquire/release ordering.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Use atomic ownership with acquire/release ordering.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/7m98ru9g",
+      "editable": true,
+      "name": "Rectangle 6",
+      "position": {
+        "left": 72,
+        "top": 474,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Keep the critical section short.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Keep the critical section short.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Keep the critical section short.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/oryp8fah",
+      "editable": true,
+      "name": "Rectangle 7",
+      "position": {
+        "left": 72,
+        "top": 634,
+        "width": 1020,
+        "height": 55
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Source: xv6 allocator code. The experiment restores the existing lock.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#53616E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Source: xv6 allocator code. The experiment restores the existing lock.",
+          "style": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#53616E",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Source: xv6 allocator code. The experiment restores the existing lock.",
+              "anchor": 1,
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#53616E",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    }
+  ]
+}

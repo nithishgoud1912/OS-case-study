@@ -1,0 +1,614 @@
+{
+  "schema": "openai.presentation.layout/v5",
+  "unit": "px",
+  "slide": {
+    "id": "sl/jetc3ut0",
+    "index": 10,
+    "layout": {
+      "id": "ly/14ra9krq",
+      "name": "Blank"
+    },
+    "masterLayoutId": "ly/atofqts7",
+    "masterLayoutName": "Master",
+    "backgroundColor": "rgba(255,255,255,1)",
+    "position": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "ly/14ra9krq",
+      "name": "Blank",
+      "type": "blank",
+      "parentLayoutId": "ly/atofqts7",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "ly/atofqts7",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/xcryxg7y",
+      "editable": true,
+      "name": "Rectangle 1",
+      "position": {
+        "left": 72,
+        "top": 42,
+        "width": 1136,
+        "height": 92
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "7. member1_tools.c automates the WSL experiment",
+      "style": {
+        "anchor": 1,
+        "fontSize": 42,
+        "typeface": "Arial",
+        "color": "#12304A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "7. member1_tools.c automates the WSL experiment",
+          "style": {
+            "fontSize": 42,
+            "typeface": "Arial",
+            "color": "#12304A",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "7. member1_tools.c automates the WSL experiment",
+              "anchor": 1,
+              "fontSize": 42,
+              "typeface": "Arial",
+              "color": "#12304A",
+              "bold": true,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/wbih4b6d",
+      "editable": true,
+      "name": "Rectangle 2",
+      "position": {
+        "left": 1152,
+        "top": 673,
+        "width": 56,
+        "height": 25
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "11",
+      "style": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#66727E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "11",
+          "style": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#66727E",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "11",
+              "anchor": 1,
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#66727E",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/n69grmpw",
+      "editable": true,
+      "name": "Rectangle 3",
+      "position": {
+        "left": 72,
+        "top": 150,
+        "width": 1136,
+        "height": 75
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Host C helper builds xv6, launches QEMU, records each attempt, and restores kalloc.c.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Host C helper builds xv6, launches QEMU, records each attempt, and restores kalloc.c.",
+          "style": {
+            "fontSize": 27,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Host C helper builds xv6, launches QEMU, records each attempt, and restores kalloc.c.",
+              "anchor": 1,
+              "fontSize": 27,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": true,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/250zy18b",
+      "editable": true,
+      "name": "Rectangle 4",
+      "position": {
+        "left": 72,
+        "top": 238,
+        "width": 1136,
+        "height": 75
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Its run, package, and replay modes validate, summarize, and replay saved evidence.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Its run, package, and replay modes validate, summarize, and replay saved evidence.",
+          "style": {
+            "fontSize": 27,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Its run, package, and replay modes validate, summarize, and replay saved evidence.",
+              "anchor": 1,
+              "fontSize": 27,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/98rytw72",
+      "editable": true,
+      "name": "Rectangle 5",
+      "position": {
+        "left": 82,
+        "top": 365,
+        "width": 1120,
+        "height": 225
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "PowerShell: wsl -d Ubuntu-24.04\ncd ~/xv6-member1\ngit rev-parse HEAD\nmake -j4 kernel/kernel fs.img\nmake qemu CPUS=4\n# xv6 shell: echo hello xv6; usertests -q; race_test",
+      "style": {
+        "anchor": 1,
+        "fontSize": 29,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "PowerShell: wsl -d Ubuntu-24.04",
+          "style": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "PowerShell: wsl -d Ubuntu-24.04",
+              "anchor": 1,
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "cd ~/xv6-member1",
+          "style": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "cd ~/xv6-member1",
+              "anchor": 1,
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "git rev-parse HEAD",
+          "style": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "git rev-parse HEAD",
+              "anchor": 1,
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "make -j4 kernel/kernel fs.img",
+          "style": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "make -j4 kernel/kernel fs.img",
+              "anchor": 1,
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        },
+        {
+          "index": 5,
+          "text": "make qemu CPUS=4",
+          "style": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "make qemu CPUS=4",
+              "anchor": 1,
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        },
+        {
+          "index": 6,
+          "text": "# xv6 shell: echo hello xv6; usertests -q; race_test",
+          "style": {
+            "fontSize": 29,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "# xv6 shell: echo hello xv6; usertests -q; race_test",
+              "anchor": 1,
+              "fontSize": 29,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/o7ih0r6h",
+      "editable": true,
+      "name": "Rectangle 6",
+      "position": {
+        "left": 72,
+        "top": 634,
+        "width": 1020,
+        "height": 55
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Source: member1_tools.c and the saved WSL run sequence.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Arial",
+        "color": "#53616E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Source: member1_tools.c and the saved WSL run sequence.",
+          "style": {
+            "fontSize": 20,
+            "typeface": "Arial",
+            "color": "#53616E",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Source: member1_tools.c and the saved WSL run sequence.",
+              "anchor": 1,
+              "fontSize": 20,
+              "typeface": "Arial",
+              "color": "#53616E",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+Case Study 14 - xv6 kernel race demonstration
+
+Environment
+  Base xv6-riscv revision: ae7cff64d1cd1153e98794d19c46235ead934cf2
+  Build: make -j4 DETFLAGS= kernel/kernel fs.img
+  QEMU: make qemu CPUS=2
+  User command at the xv6 shell: racetest
+  Build result: exit status 0
+
+Captured QEMU console output
+----------------------------
+xv6 kernel is booting
+hart 1 starting
+init: starting sh
+$ racetest
+Case Study 14: xv6 kernel free-list race demonstration
+Run xv6 with two harts (make qemu CPUS=2).
+racetest: starting unlocked case with two xv6 processes
+
+[xv6 race demo] UNLOCKED free-list pop
+  user workers ran on harts 0 and 1
+  head values read: P0 and P0
+  allocated pages: P0 and P0
+  same page returned twice: YES
+  free-list head after both pops: P1
+  page IDs appearing exactly once: 2 / 3
+  invariant: INCONSISTENT
+  xv6 check: PASS
+racetest: starting spinlock case with two xv6 processes
+
+[xv6 race demo] SPINLOCK free-list pop
+  user workers ran on harts 0 and 1
+  allocated pages: P0 and P1
+  same page returned twice: NO
+  free-list head after both pops: P2
+  page IDs appearing exactly once: 3 / 3
+  invariant: CONSISTENT
+  xv6 check: PASS
+XV6 RACE DEMO: PASS (inconsistency reproduced; spinlock fixed it)
+$
+
+Interpretation
+  The unlocked run duplicates P0. P1 and P2 are still on the test free list;
+  the 2/3 count means only two page IDs occur exactly once.
+  The spinlock run returns P0 and P1, leaving P2 on the list, so all three
+  page IDs occur exactly once.

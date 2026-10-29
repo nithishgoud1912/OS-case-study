@@ -1,0 +1,22 @@
+make: Entering directory '/mnt/c/Users/HP/Documents/OS record/OS CASE STUDY/case_study_14_rebuild'
+./build/race_demo
+XV6-style physical-page free-list demonstration
+Two CPU threads, three pages, one allocation per thread
+
+UNLOCKED RUN (controlled interleaving)
+  CPU 0 read head P0; CPU 1 read head P0
+  Allocations: CPU 0 = P0, CPU 1 = P0
+  Same page returned twice: YES
+  Free-list head after both pops: P1
+  Pages present exactly once (allocated + free): 2 / 3
+  State: INCONSISTENT
+
+SPINLOCK RUN (lock covers the complete pop)
+  Allocations: CPU 0 = P0, CPU 1 = P1
+  Same page returned twice: NO
+  Free-list head after both pops: P2
+  Pages present exactly once (allocated + free): 3 / 3
+  State: CONSISTENT
+
+DEMONSTRATION CHECK: PASS (race reproduced; spinlock preserved the invariant)
+make: Leaving directory '/mnt/c/Users/HP/Documents/OS record/OS CASE STUDY/case_study_14_rebuild'

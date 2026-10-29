@@ -1,0 +1,525 @@
+{
+  "schema": "openai.presentation.layout/v5",
+  "unit": "px",
+  "slide": {
+    "id": "sl/hwbqtkby",
+    "index": 1,
+    "layout": {
+      "id": "ly/14ra9krq",
+      "name": "Blank"
+    },
+    "masterLayoutId": "ly/atofqts7",
+    "masterLayoutName": "Master",
+    "backgroundColor": "rgba(255,255,255,1)",
+    "position": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "ly/14ra9krq",
+      "name": "Blank",
+      "type": "blank",
+      "parentLayoutId": "ly/atofqts7",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "ly/atofqts7",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/9072xkry",
+      "editable": true,
+      "name": "Rectangle 1",
+      "position": {
+        "left": 72,
+        "top": 42,
+        "width": 1136,
+        "height": 92
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Problem Statement and Introduction",
+      "style": {
+        "anchor": 1,
+        "fontSize": 42,
+        "typeface": "Arial",
+        "color": "#12304A",
+        "bold": true,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Problem Statement and Introduction",
+          "style": {
+            "fontSize": 42,
+            "typeface": "Arial",
+            "color": "#12304A",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Problem Statement and Introduction",
+              "anchor": 1,
+              "fontSize": 42,
+              "typeface": "Arial",
+              "color": "#12304A",
+              "bold": true,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/ozy1ofad",
+      "editable": true,
+      "name": "Rectangle 2",
+      "position": {
+        "left": 1152,
+        "top": 673,
+        "width": 56,
+        "height": 25
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "02",
+      "style": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#66727E",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "style": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#66727E",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "anchor": 1,
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#66727E",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/b29kza94",
+      "editable": true,
+      "name": "Rectangle 3",
+      "position": {
+        "left": 72,
+        "top": 165,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Problem: study concurrent access to shared kernel data without synchronization.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Problem: study concurrent access to shared kernel data without synchronization.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Problem: study concurrent access to shared kernel data without synchronization.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/a10jqpsj",
+      "editable": true,
+      "name": "Rectangle 4",
+      "position": {
+        "left": 72,
+        "top": 268,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Analyze how xv6 locks prevent inconsistent updates.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Analyze how xv6 locks prevent inconsistent updates.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Analyze how xv6 locks prevent inconsistent updates.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/x4r21kru",
+      "editable": true,
+      "name": "Rectangle 5",
+      "position": {
+        "left": 72,
+        "top": 371,
+        "width": 1136,
+        "height": 87
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Objectives: understand critical sections, identify shared data, explain mutual exclusion, observe concurrent updates, and explain lock safety.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Objectives: understand critical sections, identify shared data, explain mutual exclusion, observe concurrent updates, and explain lock safety.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Objectives: understand critical sections, identify shared data, explain mutual exclusion, observe concurrent updates, and explain lock safety.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/w3i1sfa9",
+      "editable": true,
+      "name": "Rectangle 6",
+      "position": {
+        "left": 72,
+        "top": 634,
+        "width": 1020,
+        "height": 55
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Activities: stress test, remove/restore four lock calls, compare. Outcome: explain lock safety. Source: Case Study 14 brief.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 21,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Activities: stress test, remove/restore four lock calls, compare. Outcome: explain lock safety. Source: Case Study 14 brief.",
+          "style": {
+            "fontSize": 21,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Activities: stress test, remove/restore four lock calls, compare. Outcome: explain lock safety. Source: Case Study 14 brief.",
+              "anchor": 1,
+              "fontSize": 21,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "alignment": "left",
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "textbox",
+      "scope": "slide",
+      "id": "sh/r65knqtk",
+      "editable": true,
+      "name": "Rectangle 5",
+      "position": {
+        "left": 72,
+        "top": 473.28,
+        "width": 1135.68,
+        "height": 87.36
+      },
+      "geometry": "rect",
+      "lineWidth": 0,
+      "text": "Motivation: four CPUs share one allocator, so concurrent kalloc() and kfree() calls can overlap.",
+      "style": {
+        "anchor": 1,
+        "fontSize": 31,
+        "typeface": "Arial",
+        "color": "#17202A",
+        "bold": false,
+        "italic": false,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Motivation: four CPUs share one allocator, so concurrent kalloc() and kfree() calls can overlap.",
+          "style": {
+            "fontSize": 31,
+            "typeface": "Arial",
+            "color": "#17202A",
+            "bold": false
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Motivation: four CPUs share one allocator, so concurrent kalloc() and kfree() calls can overlap.",
+              "anchor": 1,
+              "fontSize": 31,
+              "typeface": "Arial",
+              "color": "#17202A",
+              "bold": false,
+              "verticalAlignment": "top",
+              "wrap": "square",
+              "autoFit": "none",
+              "insets": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              }
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ]
+    }
+  ]
+}
