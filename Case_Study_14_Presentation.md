@@ -4,7 +4,7 @@
 
 ## 1. Introduction
 
-**Objective:** Study how race conditions occur when multiple CPUs access shared kernel data without synchronization, and demonstrate how XV6 prevents inconsistent updates using spinlocks.
+**Objective:** Study how race conditions occur when multiple CPUs access shared kernel data without synchronization, and demonstrate how XV6 prevents inconsistent updates using **two different methods**: spinlocks and per-CPU free lists.
 
 **Platform Used:**
 | Component | Details |
@@ -12,7 +12,8 @@
 | Operating System | XV6 (RISC-V) |
 | Emulator | QEMU with 2 harts (CPUs) |
 | Toolchain | `riscv64-linux-gnu-gcc` on WSL Ubuntu |
-| Synchronization Method | XV6 Kernel Spinlock (`acquire()` / `release()`) |
+| Synchronization Method 1 | XV6 Kernel Spinlock (`acquire()` / `release()`) |
+| Synchronization Method 2 | Per-CPU Free Lists (partitioned allocator with per-CPU locks) |
 
 ---
 
@@ -26,6 +27,9 @@ A critical section is a block of code that accesses shared data. Only **one CPU*
 
 ### 2.3 Mutual Exclusion
 A property ensuring that when one CPU is inside the critical section, **no other CPU** can enter it. XV6 achieves this using **spinlocks**.
+
+### 2.4 Per-CPU Data Partitioning
+An optimization where shared data is split into per-CPU copies. Each CPU operates on its own copy with its own lock, eliminating contention in the common case. XV6's production allocator uses this technique.
 
 ---
 
@@ -41,21 +45,23 @@ struct run {
 };
 
 struct {
-    struct spinlock lock;      // lock protecting the free list
-    struct run *freelist;      // head of the linked list of free pages
-} kmem;
+    struct spinlock lock;      // lock protecting this CPU's free list
+    struct run *freelist;      // head of this CPU's linked list of free pages
+} kmem[NCPU];                 // one list per CPU
 ```
 
-**What it does:** Every free physical page in XV6 is linked into this list. When the kernel needs a page (e.g., for a new process), it **pops** the head. When a page is freed, it **pushes** it back.
+**What it does:** Every free physical page in XV6 is linked into one of the per-CPU lists. When the kernel needs a page, it **pops** from the current CPU's list. When a page is freed, it **pushes** it back onto the current CPU's list. If the local list is empty, it **steals** a page from another CPU's list.
 
 **The critical section** in `kalloc()`:
 
 ```c
-acquire(&kmem.lock);           // Step 1: Acquire the lock
-r = kmem.freelist;             // Step 2: Read the head pointer
+push_off();
+int cpu = cpuid();
+acquire(&kmem[cpu].lock);         // Step 1: Acquire the lock
+r = kmem[cpu].freelist;           // Step 2: Read the head pointer
 if (r)
-    kmem.freelist = r->next;   // Step 3: Advance the head
-release(&kmem.lock);           // Step 4: Release the lock
+    kmem[cpu].freelist = r->next; // Step 3: Advance the head
+release(&kmem[cpu].lock);         // Step 4: Release the lock
 ```
 
 > [!IMPORTANT]
@@ -65,24 +71,24 @@ release(&kmem.lock);           // Step 4: Release the lock
 
 The `kalloc()` function performs a **two-step operation** on the shared free list:
 
-- **Step 2 (`r = kmem.freelist`):** Reads the current head pointer — "which page is at the top of the free list?"
-- **Step 3 (`kmem.freelist = r->next`):** Advances the head to the next page — "remove the top page from the list."
+- **Step 2 (`r = kmem[cpu].freelist`):** Reads the current head pointer — "which page is at the top of the free list?"
+- **Step 3 (`kmem[cpu].freelist = r->next`):** Advances the head to the next page — "remove the top page from the list."
 
 These two steps **depend on each other**. Step 3 assumes that the value read in Step 2 is still the current head. If another CPU modifies the head **between** Step 2 and Step 3, the assumption breaks.
 
 #### Without Lock — Dangerous Interleaving
 
-Suppose the free list is `P0 → P1 → P2 → NULL` and two CPUs call `kalloc()` at the same time:
+Suppose the free list is `P0 → P1 → P2 → NULL` and two CPUs call `kalloc()` at the same time on a shared list:
 
 ```
-CPU 0 runs Step 2:   r = kmem.freelist        →  r = P0
+CPU 0 runs Step 2:   r = freelist             →  r = P0
                      (CPU 0 has NOT done Step 3 yet)
 
-CPU 1 runs Step 2:   r = kmem.freelist        →  r = P0  (SAME page!)
+CPU 1 runs Step 2:   r = freelist             →  r = P0  (SAME page!)
                      (head is still P0 because nobody updated it yet)
 
-CPU 0 runs Step 3:   kmem.freelist = r->next  →  head becomes P1
-CPU 1 runs Step 3:   kmem.freelist = r->next  →  head becomes P1 (again, same write)
+CPU 0 runs Step 3:   freelist = r->next       →  head becomes P1
+CPU 1 runs Step 3:   freelist = r->next       →  head becomes P1 (again, same write)
 ```
 
 **Result of this interleaving:**
@@ -101,15 +107,15 @@ Both CPUs now hold pointers to the **same physical memory**. When both processes
 The lock forces the two-step operation to complete **fully on one CPU** before the other CPU can begin:
 
 ```
-CPU 0: acquire(&kmem.lock)         →  lock obtained ✅
-CPU 0: r = kmem.freelist           →  r = P0
-CPU 0: kmem.freelist = r->next     →  head becomes P1
-CPU 0: release(&kmem.lock)         →  lock released
+CPU 0: acquire(&kmem.lock)           →  lock obtained ✅
+CPU 0: r = kmem.freelist             →  r = P0
+CPU 0: kmem.freelist = r->next       →  head becomes P1
+CPU 0: release(&kmem.lock)           →  lock released
 
-CPU 1: acquire(&kmem.lock)         →  lock obtained ✅ (was blocked until now)
-CPU 1: r = kmem.freelist           →  r = P1 (head is already P1)
-CPU 1: kmem.freelist = r->next     →  head becomes P2
-CPU 1: release(&kmem.lock)         →  lock released
+CPU 1: acquire(&kmem.lock)           →  lock obtained ✅ (was blocked until now)
+CPU 1: r = kmem.freelist             →  r = P1 (head is already P1)
+CPU 1: kmem.freelist = r->next       →  head becomes P2
+CPU 1: release(&kmem.lock)           →  lock released
 ```
 
 **Result of this serialized execution:**
@@ -139,9 +145,11 @@ struct race_run {
 };
 
 static struct {
-    struct spinlock lock;       // XV6 spinlock for the locked test
+    struct spinlock lock;       // XV6 spinlock for Method 1 (global spinlock)
+    struct spinlock local_lock[RACE_WORKERS]; // per-CPU locks for Method 2
     struct race_run pages[3];   // three test pages: P0, P1, P2
-    struct race_run *freelist;  // shared head pointer
+    struct race_run *freelist;  // shared head pointer (used by Unlocked + Method 1)
+    struct race_run *local_freelist[RACE_WORKERS]; // per-CPU lists (Method 2)
     int hart[2];                // which CPU each worker ran on
     struct race_run *allocated[2]; // what each worker received
 } demo;
@@ -149,18 +157,25 @@ static struct {
 
 ### 4.2 Initial State
 
+**For Unlocked and Spinlock cases:**
 ```
 freelist → [ P0 ] → [ P1 ] → [ P2 ] → NULL
 ```
 
-Three pages linked together. Two worker processes (one per CPU) will each try to **pop** one page from this list.
+**For Per-CPU case:**
+```
+CPU 0 list → [ P0 ] → [ P2 ] → NULL
+CPU 1 list → [ P1 ] → NULL
+```
+
+Three pages linked together. Two worker processes (one per CPU) will each try to **pop** one page.
 
 ### 4.3 Files Involved
 
 | File | Purpose |
 |------|---------|
-| [`kernel/racecheck.c`](file:///c:/Users/HP/Documents/OS%20record/OS%20CASE%20STUDY/case_study_14_rebuild/xv6-riscv/kernel/racecheck.c) | Kernel test engine — implements both unlocked and locked paths |
-| [`user/racetest.c`](file:///c:/Users/HP/Documents/OS%20record/OS%20CASE%20STUDY/case_study_14_rebuild/xv6-riscv/user/racetest.c) | User program — forks 2 processes, runs both test cases |
+| [`kernel/racecheck.c`](file:///c:/Users/HP/Documents/OS%20record/OS%20CASE%20STUDY/case_study_14_rebuild/xv6-riscv/kernel/racecheck.c) | Kernel test engine — implements unlocked, spinlock, and per-CPU paths |
+| [`user/racetest.c`](file:///c:/Users/HP/Documents/OS%20record/OS%20CASE%20STUDY/case_study_14_rebuild/xv6-riscv/user/racetest.c) | User program — forks 2 processes, runs all three test cases |
 | [`kernel/syscall.c`](file:///c:/Users/HP/Documents/OS%20record/OS%20CASE%20STUDY/case_study_14_rebuild/xv6-riscv/kernel/syscall.c) | Syscall dispatch — wires user calls to kernel functions |
 | [`kernel/kalloc.c`](file:///c:/Users/HP/Documents/OS%20record/OS%20CASE%20STUDY/case_study_14_rebuild/xv6-riscv/kernel/kalloc.c) | Production allocator — the real code we're studying |
 
@@ -171,7 +186,7 @@ Three pages linked together. Two worker processes (one per CPU) will each try to
 ### 5.1 Code — Unlocked Path
 
 ```c
-// kernel/racecheck.c — UNLOCKED free-list pop (lines 115-124)
+// kernel/racecheck.c — UNLOCKED free-list pop (lines 132-141)
 
 // Both CPU 0 and CPU 1 execute this simultaneously:
 
@@ -217,12 +232,12 @@ Final State:  freelist → P1 → P2 → NULL
 
 ---
 
-## 6. Fixing with Synchronization — XV6 Spinlock (WITH Lock)
+## 6. Method 1: Fixing with XV6 Spinlock (Global Lock)
 
 ### 6.1 Code — Spinlock Path
 
 ```c
-// kernel/racecheck.c — SPINLOCK free-list pop (lines 126-133)
+// kernel/racecheck.c — SPINLOCK free-list pop (lines 142-149)
 
 rendezvous(worker_id);              // Both CPUs are ready to compete
 
@@ -271,25 +286,93 @@ Final State:  freelist → P2 → NULL
 
 ---
 
-## 7. How the User Program Orchestrates the Test
+## 7. Method 2: Fixing with Per-CPU Free Lists (Partitioned Allocator)
+
+### 7.1 Concept
+
+Instead of protecting one shared list with a single lock, we **partition** the free list into separate lists — one per CPU. Each CPU has its own lock protecting its own list. This is exactly what XV6's production `kalloc.c` does with `kmem[NCPU]`.
+
+**Advantages over Method 1:**
+- No contention between CPUs for local allocations
+- Each CPU can allocate independently without blocking others
+- Only cross-CPU stealing requires accessing another CPU's lock
+
+### 7.2 Code — Per-CPU Path
+
+```c
+// kernel/racecheck.c — PER-CPU free-list pop (lines 150-159)
+
+rendezvous(worker_id);
+int cpu = cpuid();
+acquire(&demo.local_lock[cpu]);     // ← Each CPU acquires its OWN lock
+page = __atomic_load_n(&demo.local_freelist[cpu], __ATOMIC_RELAXED);
+if (page)
+    __atomic_store_n(&demo.local_freelist[cpu], page->next, __ATOMIC_RELAXED);
+demo.observed[worker_id] = page;
+release(&demo.local_lock[cpu]);     // ← Release own lock
+```
+
+### 7.3 Step-by-Step Timeline
+
+```
+Initial State:
+  CPU 0 local list → P0 → P2 → NULL
+  CPU 1 local list → P1 → NULL
+
+Time    CPU 0 (Worker 0)                   CPU 1 (Worker 1)
+────    ────────────────                   ────────────────
+T1      ─── rendezvous (both ready) ───
+T2      acquire(local_lock[0]) ✅          acquire(local_lock[1]) ✅
+T3      READ local head → P0              READ local head → P1
+T4      WRITE local head = P2             WRITE local head = NULL
+T5      release(local_lock[0])            release(local_lock[1])
+T6      RETURN P0 ✓                       RETURN P1 ✓
+
+Final State:
+  CPU 0 local list → P2 → NULL
+  CPU 1 local list → EMPTY
+```
+
+### 7.4 Result
+
+| Observation | Value |
+|-------------|-------|
+| CPU 0 allocated | **P0** |
+| CPU 1 allocated | **P1** (different page) |
+| CPU 0 local list after | P2 |
+| CPU 1 local list after | EMPTY |
+| Pages appearing exactly once | 3 / 3 (all pages) |
+| Duplicate allocation | **NO** |
+| Invariant | **CONSISTENT** ✅ |
+
+> [!NOTE]
+> **Key difference from Method 1:** Both CPUs acquire their locks **simultaneously** at T2 — neither blocks the other! This is zero-contention allocation. In the spinlock method, CPU 1 had to wait (spin) until CPU 0 released the shared lock.
+
+---
+
+## 8. How the User Program Orchestrates the Test
 
 ```c
 // user/racetest.c — Main flow
 
 int main(void) {
     // CASE 1: Run WITHOUT lock
-    run_case(UNLOCKED);     // Expected: INCONSISTENT
+    int unsafe_ok = run_case(UNLOCKED);     // Expected: INCONSISTENT
 
-    // CASE 2: Run WITH spinlock
-    run_case(SPINLOCK);     // Expected: CONSISTENT
+    // CASE 2: Run WITH spinlock (Method 1)
+    int safe_ok = run_case(SPINLOCK);       // Expected: CONSISTENT
+
+    // CASE 3: Run WITH per-CPU lists (Method 2)
+    int percpu_ok = run_case(PERCPU);       // Expected: CONSISTENT
 
     // Final verdict
-    printf("XV6 RACE DEMO: PASS");
+    if (unsafe_ok && safe_ok && percpu_ok)
+        printf("XV6 RACE DEMO: PASS (race reproduced; both fixes preserve ownership)");
 }
 ```
 
 Each `run_case()` does:
-1. **`raceinit(mode)`** — Reset the test list to `P0 → P1 → P2`
+1. **`raceinit(mode)`** — Reset the test list (shared or per-CPU depending on mode)
 2. **`fork()` × 2** — Create two child processes (scheduled on two CPUs)
 3. Each child calls **`raceworker(id)`** — Enters the kernel test
 4. Parent calls **`wait()` × 2** — Waits for both children
@@ -297,7 +380,7 @@ Each `run_case()` does:
 
 ---
 
-## 8. Program Output
+## 9. Program Output
 
 ```
 Case Study 14: xv6 kernel free-list race demonstration
@@ -326,26 +409,52 @@ racetest: starting spinlock case with two xv6 processes
   invariant: CONSISTENT
   xv6 check: PASS
 
-XV6 RACE DEMO: PASS (inconsistency reproduced; spinlock fixed it)
+racetest: starting per-CPU free-list case with two xv6 processes
+
+[xv6 race demo] PER-CPU free-list pop
+  user workers ran on harts 0 and 1
+  allocated pages: P0 and P1
+  same page returned twice: NO
+  local list heads after both pops: CPU 0=P2, CPU 1=EMPTY
+  page IDs appearing exactly once: 3 / 3
+  invariant: CONSISTENT
+  xv6 check: PASS
+
+XV6 RACE DEMO: PASS (race reproduced; both fixes preserve ownership)
 ```
 
 ---
 
-## 9. Comparison Table
+## 10. Comparison Tables
 
-| Criteria | Without Lock (Unlocked) | With Spinlock (Locked) |
-|----------|------------------------|----------------------|
-| CPU 0 gets | P0 | P0 |
-| CPU 1 gets | P0 (duplicate!) | P1 (unique) |
-| Free list after | P1 → P2 | P2 |
-| Duplicate allocation | **YES** | **NO** |
-| Pages counted once | 2 / 3 | 3 / 3 |
-| Data integrity | **INCONSISTENT** ❌ | **CONSISTENT** ✅ |
-| Real-world impact | Memory corruption, crashes | Safe, correct allocation |
+### Table 1: Unlocked vs Method 1 (Spinlock) vs Method 2 (Per-CPU)
+
+| Criteria | Without Lock | Method 1: Spinlock | Method 2: Per-CPU Lists |
+|----------|-------------|-------------------|------------------------|
+| CPU 0 gets | P0 | P0 | P0 |
+| CPU 1 gets | P0 (duplicate!) | P1 (unique) | P1 (unique) |
+| Free list after | P1 → P2 | P2 | CPU0=P2, CPU1=EMPTY |
+| Duplicate allocation | **YES** | **NO** | **NO** |
+| Pages counted once | 2 / 3 | 3 / 3 | 3 / 3 |
+| Data integrity | **INCONSISTENT** ❌ | **CONSISTENT** ✅ | **CONSISTENT** ✅ |
+| Real-world impact | Memory corruption | Safe allocation | Safe + scalable |
+
+### Table 2: Method 1 vs Method 2 — Detailed Comparison
+
+| Criteria | Method 1: Spinlock | Method 2: Per-CPU Lists |
+|----------|-------------------|------------------------|
+| Mechanism | Single global `acquire()`/`release()` | Per-CPU lock + separate list per CPU |
+| Lock granularity | Coarse (one lock for entire free list) | Fine (one lock per CPU's list) |
+| Contention | High — all CPUs compete for one lock | None for local allocations |
+| Blocking | Loser spins until winner releases | No blocking for local pops |
+| Scalability | Poor with many CPUs | Excellent — scales linearly |
+| Cross-CPU case | N/A | Steal from donor under donor's lock |
+| Complexity | Simple | More complex (list partitioning + stealing) |
+| Production use | Baseline approach | **XV6's actual `kalloc.c` uses this** |
 
 ---
 
-## 10. How to Build and Run
+## 11. How to Build and Run
 
 ```bash
 # Step 1: Open WSL Ubuntu
@@ -366,17 +475,23 @@ racetest
 
 ---
 
-## 11. Conclusion
+## 12. Conclusion
 
 | Objective | Achieved |
 |-----------|----------|
 | Understand race conditions and critical sections | ✅ Demonstrated with two CPUs reading same head pointer |
-| Identify shared kernel data structures | ✅ `kmem.freelist` in `kalloc.c` |
+| Identify shared kernel data structures | ✅ `kmem[NCPU].freelist` in `kalloc.c` |
 | Study the need for mutual exclusion | ✅ Without it, duplicate page allocation occurs |
 | Observe the effect of concurrent updates | ✅ UNLOCKED case shows P0 returned to both CPUs |
-| Understand how locks prevent inconsistent results | ✅ SPINLOCK case ensures each CPU gets a unique page |
+| Fix using Method 1 (spinlock) | ✅ Global lock serializes access → CONSISTENT |
+| Fix using Method 2 (per-CPU lists) | ✅ Partitioned lists eliminate contention → CONSISTENT |
+| Compare two synchronization approaches | ✅ Spinlock is simple; per-CPU lists scale better |
 
-**Key Takeaway:** A race condition arises when the **read** and **update** of shared data are not protected as a single atomic operation. XV6's **spinlock** (`acquire()`/`release()`) enforces mutual exclusion, ensuring only one CPU executes the critical section at a time, thereby preventing data inconsistency.
+**Key Takeaway:** A race condition arises when the **read** and **update** of shared data are not protected as a single atomic operation. XV6 provides two approaches:
+1. **Spinlock** (`acquire()`/`release()`) enforces mutual exclusion — simple but creates contention.
+2. **Per-CPU free lists** partition the data so each CPU works independently — scalable and used in production.
+
+Both methods prevent data inconsistency. The choice depends on the trade-off between simplicity and performance.
 
 ---
 

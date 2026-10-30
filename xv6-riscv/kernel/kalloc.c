@@ -21,12 +21,13 @@ struct run {
 struct {
   struct spinlock lock;
   struct run *freelist;
-} kmem;
+} kmem[NCPU];
 
 void
 kinit()
 {
-  initlock(&kmem.lock, "kmem");
+  for (int cpu = 0; cpu < NCPU; cpu++)
+    initlock(&kmem[cpu].lock, "kmem");
   freerange(end, (void *)PHYSTOP);
 }
 
@@ -56,10 +57,14 @@ kfree(void *pa)
 
   r = (struct run *)pa;
 
-  acquire(&kmem.lock);
-  r->next = kmem.freelist;
-  kmem.freelist = r;
-  release(&kmem.lock);
+  // Keep the current CPU stable while selecting its local free list.
+  push_off();
+  int cpu = cpuid();
+  acquire(&kmem[cpu].lock);
+  r->next = kmem[cpu].freelist;
+  kmem[cpu].freelist = r;
+  release(&kmem[cpu].lock);
+  pop_off();
 }
 
 // Allocate one 4096-byte page of physical memory.
@@ -68,13 +73,32 @@ kfree(void *pa)
 void *
 kalloc(void)
 {
-  struct run *r;
+  struct run *r = 0;
 
-  acquire(&kmem.lock);
-  r = kmem.freelist;
+  // Most allocations use the current CPU's list.  If it is empty, take one
+  // page from another CPU's list while holding only that donor's lock.
+  push_off();
+  int cpu = cpuid();
+  acquire(&kmem[cpu].lock);
+  r = kmem[cpu].freelist;
   if (r)
-    kmem.freelist = r->next;
-  release(&kmem.lock);
+    kmem[cpu].freelist = r->next;
+  release(&kmem[cpu].lock);
+
+  if (r == 0) {
+    for (int donor = 0; donor < NCPU; donor++) {
+      if (donor == cpu)
+        continue;
+      acquire(&kmem[donor].lock);
+      r = kmem[donor].freelist;
+      if (r)
+        kmem[donor].freelist = r->next;
+      release(&kmem[donor].lock);
+      if (r)
+        break;
+    }
+  }
+  pop_off();
 
   if (r)
     memset((char *)r, 5, PGSIZE); // fill with junk

@@ -1,7 +1,7 @@
 #include "kernel/types.h"
 #include "user/user.h"
 
-enum { UNLOCKED = 0, SPINLOCK = 1, WORKERS = 2 };
+enum { UNLOCKED = 0, SPINLOCK = 1, PERCPU = 2, WORKERS = 2 };
 
 static int
 run_case(int mode)
@@ -12,7 +12,8 @@ run_case(int mode)
   }
 
   printf("racetest: starting %s case with two xv6 processes\n",
-         mode == UNLOCKED ? "unlocked" : "spinlock");
+         mode == UNLOCKED ? "unlocked" :
+         mode == SPINLOCK ? "spinlock" : "per-CPU free-list");
 
   int children = 0;
   for (int worker = 0; worker < WORKERS; worker++) {
@@ -47,9 +48,10 @@ main(void)
 
   int unsafe_ok = run_case(UNLOCKED) == 0;
   int safe_ok = run_case(SPINLOCK) == 0;
+  int percpu_ok = run_case(PERCPU) == 0;
 
-  if (unsafe_ok && safe_ok) {
-    printf("XV6 RACE DEMO: PASS (inconsistency reproduced; spinlock fixed it)\n");
+  if (unsafe_ok && safe_ok && percpu_ok) {
+    printf("XV6 RACE DEMO: PASS (race reproduced; both fixes preserve ownership)\n");
     exit(0);
   }
 

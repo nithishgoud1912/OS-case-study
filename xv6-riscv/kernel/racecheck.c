@@ -14,7 +14,7 @@
 #include "defs.h"
 
 enum { RACE_WORKERS = 2, RACE_PAGES = 3 };
-enum { RACE_UNLOCKED = 0, RACE_SPINLOCK = 1 };
+enum { RACE_UNLOCKED = 0, RACE_SPINLOCK = 1, RACE_PERCPU = 2 };
 
 struct race_run {
   int id;
@@ -23,8 +23,10 @@ struct race_run {
 
 static struct {
   struct spinlock lock;
+  struct spinlock local_lock[RACE_WORKERS];
   struct race_run pages[RACE_PAGES];
   struct race_run *freelist;
+  struct race_run *local_freelist[RACE_WORKERS];
   int mode;
   int ready;
   int hart[RACE_WORKERS];
@@ -42,14 +44,29 @@ static void
 reset_demo(int mode)
 {
   initlock(&demo.lock, "race-demo");
+  for (int cpu = 0; cpu < RACE_WORKERS; cpu++)
+    initlock(&demo.local_lock[cpu], "race-local");
   demo.mode = mode;
   __atomic_store_n(&demo.ready, 0, __ATOMIC_RELAXED);
+  __atomic_store_n(&demo.freelist, 0, __ATOMIC_RELAXED);
 
   for (int i = 0; i < RACE_PAGES; i++) {
     demo.pages[i].id = i;
-    demo.pages[i].next = i + 1 < RACE_PAGES ? &demo.pages[i + 1] : 0;
+    demo.pages[i].next = 0;
   }
-  __atomic_store_n(&demo.freelist, &demo.pages[0], __ATOMIC_RELAXED);
+
+  if (mode == RACE_PERCPU) {
+    // CPU 0 starts with P0 -> P2; CPU 1 starts with P1.
+    demo.pages[0].next = &demo.pages[2];
+    demo.local_freelist[0] = &demo.pages[0];
+    demo.local_freelist[1] = &demo.pages[1];
+  } else {
+    for (int i = 0; i + 1 < RACE_PAGES; i++)
+      demo.pages[i].next = &demo.pages[i + 1];
+    __atomic_store_n(&demo.freelist, &demo.pages[0], __ATOMIC_RELAXED);
+    for (int cpu = 0; cpu < RACE_WORKERS; cpu++)
+      demo.local_freelist[cpu] = 0;
+  }
 
   for (int i = 0; i < RACE_WORKERS; i++) {
     demo.hart[i] = -1;
@@ -94,7 +111,7 @@ sys_raceinit(void)
 {
   int mode;
   argint(0, &mode);
-  if (mode != RACE_UNLOCKED && mode != RACE_SPINLOCK)
+  if (mode != RACE_UNLOCKED && mode != RACE_SPINLOCK && mode != RACE_PERCPU)
     return -1;
 
   reset_demo(mode);
@@ -122,7 +139,7 @@ sys_raceworker(void)
 
     if (page)
       __atomic_store_n(&demo.freelist, next, __ATOMIC_RELAXED);
-  } else {
+  } else if (demo.mode == RACE_SPINLOCK) {
     rendezvous(worker_id);
     acquire(&demo.lock);
     page = __atomic_load_n(&demo.freelist, __ATOMIC_RELAXED);
@@ -130,6 +147,15 @@ sys_raceworker(void)
       __atomic_store_n(&demo.freelist, page->next, __ATOMIC_RELAXED);
     demo.observed[worker_id] = page;
     release(&demo.lock);
+  } else {
+    rendezvous(worker_id);
+    int cpu = cpuid();
+    acquire(&demo.local_lock[cpu]);
+    page = __atomic_load_n(&demo.local_freelist[cpu], __ATOMIC_RELAXED);
+    if (page)
+      __atomic_store_n(&demo.local_freelist[cpu], page->next, __ATOMIC_RELAXED);
+    demo.observed[worker_id] = page;
+    release(&demo.local_lock[cpu]);
   }
 
   demo.allocated[worker_id] = page;
@@ -156,21 +182,26 @@ audit_state(int *exactly_once)
     }
   }
 
-  struct race_run *page = __atomic_load_n(&demo.freelist, __ATOMIC_RELAXED);
-  int steps = 0;
-  while (page && steps < RACE_PAGES) {
-    int id = page_id(page);
-    if (id < 0 || id >= RACE_PAGES || seen[id]) {
-      valid = 0;
-      break;
+  int list_count = demo.mode == RACE_PERCPU ? RACE_WORKERS : 1;
+  for (int list = 0; list < list_count; list++) {
+    struct race_run *page = demo.mode == RACE_PERCPU ?
+      __atomic_load_n(&demo.local_freelist[list], __ATOMIC_RELAXED) :
+      __atomic_load_n(&demo.freelist, __ATOMIC_RELAXED);
+    int steps = 0;
+    while (page && steps < RACE_PAGES) {
+      int id = page_id(page);
+      if (id < 0 || id >= RACE_PAGES || seen[id]) {
+        valid = 0;
+        break;
+      }
+      seen[id] = 1;
+      occurrences[id]++;
+      steps++;
+      page = page->next;
     }
-    seen[id] = 1;
-    occurrences[id]++;
-    steps++;
-    page = page->next;
+    if (page)
+      valid = 0;
   }
-  if (page)
-    valid = 0;
 
   *exactly_once = 0;
   for (int i = 0; i < RACE_PAGES; i++) {
@@ -196,7 +227,8 @@ sys_racereport(void)
 
   printk("\n[xv6 race demo] %s\n",
          demo.mode == RACE_UNLOCKED ? "UNLOCKED free-list pop" :
-                                      "SPINLOCK free-list pop");
+         demo.mode == RACE_SPINLOCK ? "SPINLOCK free-list pop" :
+                                      "PER-CPU free-list pop");
   printk("  user workers ran on harts %d and %d\n",
          demo.hart[0], demo.hart[1]);
   if (demo.mode == RACE_UNLOCKED)
@@ -205,7 +237,16 @@ sys_racereport(void)
   printk("  allocated pages: P%d and P%d\n",
          page_id(demo.allocated[0]), page_id(demo.allocated[1]));
   printk("  same page returned twice: %s\n", duplicate ? "YES" : "NO");
-  printk("  free-list head after both pops: P%d\n", page_id(head));
+  if (demo.mode == RACE_PERCPU) {
+    printk("  local list heads after both pops: CPU 0=P%d, CPU 1=",
+           page_id(demo.local_freelist[0]));
+    if (demo.local_freelist[1])
+      printk("P%d\n", page_id(demo.local_freelist[1]));
+    else
+      printk("EMPTY\n");
+  } else {
+    printk("  free-list head after both pops: P%d\n", page_id(head));
+  }
   printk("  page IDs appearing exactly once: %d / %d\n",
          exactly_once, RACE_PAGES);
   printk("  invariant: %s\n", consistent ? "CONSISTENT" : "INCONSISTENT");
@@ -215,10 +256,17 @@ sys_racereport(void)
                exactly_once == RACE_PAGES - 1 && page_id(head) == 1 &&
                page_id(demo.observed[0]) == 0 &&
                page_id(demo.observed[1]) == 0;
-  else
+  else if (demo.mode == RACE_SPINLOCK)
     expected = two_harts && !duplicate && consistent &&
                exactly_once == RACE_PAGES && page_id(head) == 2 &&
                page_id(demo.allocated[0]) != page_id(demo.allocated[1]);
+  else
+    expected = two_harts && demo.hart[0] == 0 && demo.hart[1] == 1 &&
+               !duplicate && consistent && exactly_once == RACE_PAGES &&
+               page_id(demo.allocated[0]) == 0 &&
+               page_id(demo.allocated[1]) == 1 &&
+               demo.local_freelist[0] == &demo.pages[2] &&
+               demo.local_freelist[1] == 0;
 
   printk("  xv6 check: %s\n", expected ? "PASS" : "FAIL");
   return expected ? 0 : -1;

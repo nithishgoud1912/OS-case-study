@@ -1,6 +1,6 @@
 # Case Study 14: Run and Explain the xv6 Implementation
 
-This guide builds and runs the race-condition experiment inside xv6. The kernel code—not a host-side pthread program—performs the shared free-list operations and uses xv6's spinlock implementation.
+This guide builds and runs the race-condition experiment inside xv6. The kernel code—not a host-side pthread program—performs the shared free-list operations. It compares the original global-spinlock approach with a second method that partitions the allocator into per-CPU free lists.
 
 ## What the experiment does
 
@@ -8,18 +8,19 @@ The experiment models the `head` and `next` pointer operation in xv6's physical-
 
 - **Unlocked case:** both harts read `P0` before either updates the list head. Both return `P0`, demonstrating duplicate ownership.
 - **Spinlock case:** xv6's spinlock protects the full read-and-update operation. The workers receive `P0` and `P1`; `P2` remains free.
+- **Per-CPU case:** each hart pops from its own locked list. The workers receive `P0` and `P1`; `P2` remains on CPU 0's list. The production allocator checks other lists under their locks when its local list is empty.
 - **Audit:** the kernel checks whether every page ID appears exactly once across the allocations and the remaining free list.
 
-The unsafe test uses a separate list rather than damaging xv6's production allocator. `kernel/kalloc.c` remains protected by its normal `kmem.lock`. The demo itself runs inside xv6 on two QEMU harts and calls xv6's real `acquire()` and `release()` functions for the corrected run.
+The unsafe test uses separate test-only lists rather than damaging xv6's production allocator. The production allocator uses one spinlock and free list per CPU. The demo itself runs inside xv6 on two QEMU harts and uses xv6's real `acquire()` and `release()` functions for both corrected cases.
 
 ## Files to know
 
-- `xv6-riscv/kernel/racecheck.c` - test data, kernel worker operations, spinlock, and invariant audit
+- `xv6-riscv/kernel/racecheck.c` - test data, kernel worker operations, both locking methods, and invariant audit
 - `xv6-riscv/user/racetest.c` - user program that creates two child processes, waits for them, and requests the kernel report
-- `xv6-riscv/kernel/kalloc.c` - production allocator showing the real `kmem.freelist` and `kmem.lock`
+- `xv6-riscv/kernel/kalloc.c` - production allocator with per-CPU free lists, locks, and fallback stealing
 - `xv6-riscv/kernel/syscall.h` and `kernel/syscall.c` - syscall numbers and dispatch table
 - `xv6-riscv/user/usys.pl` and `user/user.h` - user-side syscall stubs and declarations
-- `evidence/xv6_qemu_run.txt` - captured output from a successful xv6 run
+- `evidence/xv6_qemu_run.txt` - captured output from the earlier two-case run; it does not include the newly added per-CPU case
 
 ## 1. Start WSL Ubuntu
 
@@ -73,13 +74,13 @@ At the xv6 shell prompt, type:
 racetest
 ```
 
-The program runs both cases automatically. When it prints the final PASS line, exit QEMU's nographic console by pressing **Ctrl+A**, releasing those keys, and then pressing **X**.
+The program runs all three cases automatically. When it prints the final PASS line, exit QEMU's nographic console by pressing **Ctrl+A**, releasing those keys, and then pressing **X**.
 
 To rerun, boot xv6 again with `make -j4 DETFLAGS= qemu CPUS=2` and type `racetest` at the shell prompt.
 
 ## 4. Expected output and meaning
 
-The captured run should include these results:
+The existing evidence file records only the unlocked and spinlock cases. Rebuilding the updated source and running `racetest` should produce results like these; the per-CPU section is expected output, not yet captured evidence:
 
 ```text
 [xv6 race demo] UNLOCKED free-list pop
@@ -100,28 +101,40 @@ The captured run should include these results:
   page IDs appearing exactly once: 3 / 3
   invariant: CONSISTENT
   xv6 check: PASS
-XV6 RACE DEMO: PASS (inconsistency reproduced; spinlock fixed it)
+
+[xv6 race demo] PER-CPU free-list pop
+  user workers ran on harts 0 and 1
+  allocated pages: P0 and P1
+  same page returned twice: NO
+  local list heads after both pops: CPU 0=P2, CPU 1=EMPTY
+  page IDs appearing exactly once: 3 / 3
+  invariant: CONSISTENT
+  xv6 check: PASS
+XV6 RACE DEMO: PASS (race reproduced; both fixes preserve ownership)
 ```
 
 `2 / 3` means two page IDs occur exactly once. In the unlocked case, `P0` occurs twice in the allocations, while `P1` and `P2` remain linked in the free list. The problem is duplicate ownership of `P0`; the output does not claim that `P2` disappeared. In the spinlock run, `P0`, `P1`, and `P2` each occur exactly once across allocated pages and the free list.
 
-The PASS label is the test program's expected-outcome check: it passes when the unlocked case reproduces the duplicate and the spinlock case satisfies the invariant on distinct harts.
+The PASS label is the test program's expected-outcome check: it passes when the unlocked case reproduces the duplicate and both corrected cases satisfy the ownership invariant on distinct harts. The per-CPU output above describes the updated source's expected result; it is not part of the older captured evidence file.
 
 ## 5. Code walkthrough in snippets
 
 ### A. Production xv6 allocator pattern
 
-In `kernel/kalloc.c`, xv6 protects the real allocator's list head this way:
+In `kernel/kalloc.c`, xv6 selects the current CPU's list and protects its head this way:
 
 ```c
-acquire(&kmem.lock);
-r = kmem.freelist;
+push_off();
+int cpu = cpuid();
+acquire(&kmem[cpu].lock);
+r = kmem[cpu].freelist;
 if (r)
-  kmem.freelist = r->next;
-release(&kmem.lock);
+  kmem[cpu].freelist = r->next;
+release(&kmem[cpu].lock);
+pop_off();
 ```
 
-`kmem.freelist` is shared by kernel code that allocates and frees physical pages. The read of the head and the update to the head form one critical section. The same lock must cover both steps.
+`kmem[cpu].freelist` is the local list for that CPU. The read and head update form one critical section. If the local list is empty, `kalloc()` checks donor lists one at a time and removes a page while holding that donor's lock.
 
 ### B. Test free-list structure
 
@@ -141,7 +154,7 @@ static struct {
 } demo;
 ```
 
-This is kernel data inside xv6, arranged like a linked free list. It is kept separate from the live `kmem.freelist` so the intentionally unsafe case cannot break shell memory allocation.
+This is kernel data inside xv6, arranged like a linked free list. It is kept separate from the production per-CPU allocator lists so the intentionally unsafe case cannot break shell memory allocation.
 
 ### C. Two real xv6 harts enter the kernel
 
@@ -197,7 +210,13 @@ Both harts are ready before the lock contest begins. One acquires the lock, retu
 
 The lock is xv6's kernel spinlock, implemented in `kernel/spinlock.c`. Its atomic exchange claims the lock, and its atomic store releases it. No pthread or host lock is involved.
 
-### F. Check the ownership invariant
+### F. Use per-CPU free lists
+
+The production allocator keeps a list and spinlock for each CPU. `kfree()` returns a page to the current CPU's list. `kalloc()` first tries that list; when it is empty, it removes one page from another CPU's list while holding the donor lock. Only one list lock is held at a time.
+
+The test-only per-CPU case starts CPU 0 with `P0 -> P2` and CPU 1 with `P1`. Each pinned worker pops from its local list under that CPU's lock. This avoids the single shared head for the common local allocation path while the lock still protects each list. Cross-CPU stealing uses the donor lock so a page cannot be removed twice.
+
+### G. Check the ownership invariant
 
 The kernel audit counts page IDs among the two allocations and the pages left on the list. For every page, the expected count is exactly one:
 
@@ -208,21 +227,22 @@ else
   valid = 0;
 ```
 
-The audit also detects invalid IDs, repeated free-list nodes, and cycles. The unlocked run fails the invariant because `P0` appears twice. The spinlock run passes because every page appears exactly once.
+The audit also detects invalid IDs, repeated free-list nodes, and cycles. It scans the global test list for the first two cases and both local test lists for the per-CPU case. The unlocked run fails because `P0` appears twice; both corrected cases pass because every page appears exactly once.
 
-### G. Test flow
+### H. Test flow
 
-`user/racetest.c` resets the kernel test state, forks two child processes, and has each child call the worker system call. The parent waits for both children before asking the kernel to print the audit. It repeats this from a fresh initial list for the spinlock case.
+`user/racetest.c` resets the kernel test state, forks two child processes, and has each child call the worker system call. The parent waits for both children before asking the kernel to print the audit. It repeats from a fresh initial state for the spinlock and per-CPU cases.
 
 System-call wiring connects the user program to kernel code: syscall numbers are in `kernel/syscall.h`, dispatch is in `kernel/syscall.c`, and user stubs are generated from `user/usys.pl` with declarations in `user/user.h`.
 
 ## 6. How to present the result
 
-1. Point to `kernel/kalloc.c`: xv6 already protects `kmem.freelist` with `kmem.lock`.
+1. Point to `kernel/kalloc.c`: xv6 protects each `kmem[cpu].freelist` with that CPU's lock.
 2. Explain the harmful interleaving: two harts read `P0` before either publishes the new head.
 3. Show the unlocked output: both children receive `P0`; the invariant says INCONSISTENT.
 4. Show the spinlock output: the children receive `P0` and `P1`; the invariant says CONSISTENT.
-5. Explain that the kernel test uses a separate list to keep the deliberate failure from corrupting the real allocator.
+5. Explain per-CPU lists: local allocations use separate locked lists; stealing checks a donor list under its lock.
+6. Explain that the kernel test uses separate lists to keep the deliberate failure from corrupting the production allocator.
 
 ## Troubleshooting
 
